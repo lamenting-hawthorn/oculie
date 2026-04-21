@@ -1,0 +1,23 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+# Install dependencies (cache layer)
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-dev
+
+# Copy source
+COPY bot/ bot/
+COPY dashboard/ dashboard/
+COPY scripts/ scripts/
+
+# Create data directory
+RUN mkdir -p data
+
+# Initialise DB on first run, then start the bot
+CMD ["uv", "run", "python", "-c", \
+     "import asyncio; from bot.database import init_db; asyncio.run(init_db()); \
+      import subprocess, sys; subprocess.run(['uv','run','python','-m','bot.main'], check=True)"]

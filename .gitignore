@@ -1,0 +1,46 @@
+# Environment — NEVER commit these
+.env
+.env.local
+.env.save
+.env.prod
+*.env
+.envrc
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Data & runtime
+data/
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+*.log
+logs/
+
+# Node / React
+dashboard/frontend/node_modules/
+dashboard/frontend/dist/
+dashboard/frontend/.vite/
+
+# Lock file (regenerate with `uv sync`)
+uv.lock
+
+# IDE & OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Conductor workspace
+.context/
