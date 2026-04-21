@@ -8,7 +8,7 @@ Starts in **paper trading mode** by default. No real money moves until you expli
 
 ## How it works
 
-1. Every 30 minutes Oculie fetches weather forecasts from multiple sources and builds a consensus probability distribution over tomorrow's temperature
+1. Every 30 minutes Oculie fetches weather forecasts from NOAA NWS, Open-Meteo, and Visual Crossing, builds a consensus probability distribution over tomorrow's temperature
 2. It scans Polymarket's Gamma API for active temperature markets (e.g. *"Will the high in Seoul be 18°C or higher on April 22?"*)
 3. For each market it computes **edge** = forecast probability − market-implied price
 4. If edge ≥ threshold (default 3%), it sizes a position using the **Kelly Criterion** (capped at 25% of full Kelly) and executes the trade
